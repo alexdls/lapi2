@@ -195,3 +195,49 @@ password: password
 | TranslateSlug.php | 将话题标题翻译为 Slug | TopicObserver 事件 saved() |
 | TopicReplied.php | 通知作者话题有新回复 | 话题被评论以后 |
 
+.env
+
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:+eeVbkjGdoHFSXrtAPO2KCY7TgGu2ZxbWLvKyBrSJXY=
+APP_DEBUG=true
+APP_LOG_LEVEL=debug
+APP_URL=http://lapi2.dev
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=lapi2_dev
+DB_USERNAME=lapi2_dev
+DB_PASSWORD=123456
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_DRIVER=sync
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+
+# dingo config
+API_STANDARDS_TREE=prs
+API_SUBTYPE=larabbs
+API_PREFIX=api
+API_VERSION=v1
+API_DEBUG=true
+
+# 云片
+YUNPIAN_API_KEY=5fa0f14ab5a90d7b5bf6f5247cc8ad01
+
