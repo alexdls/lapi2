@@ -1,0 +1,60 @@
+appId
+wx2d0bda624899b494
+appSecret
+aaf8359b20f8d4c78891762be38fc016
+
+1.授权后跳转到lapi2.dev 获取code
+
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
+
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2d0bda624899b494&redirect_uri=http://lapi2.dev&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+
+
+
+http://lapi2.dev/?code=0114zUtZ0z4vHZ1YR3wZ0SS3uZ04zUtL&state=STATE
+2.通过code获取access_token
+
+https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+
+https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2d0bda624899b494&secret=aaf8359b20f8d4c78891762be38fc016&code=061wITYm0kYZAr1a1YXm0HIWYm0wITYB&grant_type=authorization_code
+
+{"access_token":"8_r8dl_dvnv4NTT9sQM_vn-4EQWx0TCwvOP4r9THJTeTmwl08P55_LgIC0HcFwwroDceoy6PFA30OAnRHnu9N8Og","expires_in":7200,"refresh_token":"8_1hS2wyhIIdc56JPTEGGnQ0pYQxMmw9OoTyB_1Pl21wOIl62ELLv3vBMiotbZZfLaieZxzAaIuGPIjDWyfZJtGA","openid":"oqk8y0j1PXss2TYZpvIzMJFCSJvc","scope":"snsapi_userinfo"}
+
+3.通过 access_token获取个人信息
+
+https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN
+
+https://api.weixin.qq.com/sns/userinfo?access_token=8_r8dl_dvnv4NTT9sQM_vn-4EQWx0TCwvOP4r9THJTeTmwl08P55_LgIC0HcFwwroDceoy6PFA30OAnRHnu9N8Og&openid=wx2d0bda624899b494&lang=zh_CN
+
+(4.少了appId)
+$accessToken = '8_r8dl_dvnv4NTT9sQM_vn-4EQWx0TCwvOP4r9THJTeTmwl08P55_LgIC0HcFwwroDceoy6PFA30OAnRHnu9N8Og';
+$driver = Socialite::driver('weixin');
+$oauthUser = $driver->userFromToken($accessToken);
+
+4. TINKER 通过accessToken和openId获取用户信息
+
+$accessToken = 'ACCESS_TOKEN';
+$openID = 'OPEN_ID';
+$driver = Socialite::driver('weixin');
+$driver->setOpenId($openID);
+$oauthUser = $driver->userFromToken($accessToken);
+
+$accessToken = '8_r8dl_dvnv4NTT9sQM_vn-4EQWx0TCwvOP4r9THJTeTmwl08P55_LgIC0HcFwwroDceoy6PFA30OAnRHnu9N8Og';
+$openID = 'wx2d0bda624899b494';
+$driver = Socialite::driver('weixin');
+$driver->setOpenId($openID);
+$oauthUser = $driver->userFromToken($accessToken);
+
+5. 通过code获取信息
+
+$code = 'CODE';
+$driver = Socialite::driver('weixin');
+$response = $driver->getAccessTokenResponse($code);
+$driver->setOpenId($response['openid']);
+$oauthUser = $driver->userFromToken($response['access_token']);
+
+$code = '081UhqAJ1WuoD40CdODJ1oylAJ1UhqAq';
+$driver = Socialite::driver('weixin');
+$response = $driver->getAccessTokenResponse($code);
+$driver->setOpenId($response['openid']);
+$oauthUser = $driver->userFromToken($response['access_token']);

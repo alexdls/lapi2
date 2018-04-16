@@ -40,4 +40,10 @@ return [
         'key'   => env('BAIDU_TRANSLATE_KEY'),
     ],
 
+    'weixin' => [
+        'client_id' => env('WEXIN_KET'),
+        'client_secret' => env('WEIXIN_SECRET'),
+        'redirect' => env('WEIXIN_REDIRECT_URI'),
+    ],
+
 ];
